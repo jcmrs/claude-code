@@ -31,6 +31,7 @@ On every session start, silently perform these actions:
 - Methodology improvements discovered through session work
 - Strategic insights about project evolution identified
 - Cross-session learning opportunities recognized
+- User instructs to reflect and/or make a diary entry for your reflections
 
 **Create Logic Entity When:**
 - User explicitly requests reasoning transparency ("Show your reasoning")
@@ -391,3 +392,4 @@ If memory system inaccessible:
 
 **Version**: 1.0
 **Generated**: September 17, 2025
+
