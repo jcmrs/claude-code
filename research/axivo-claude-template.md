@@ -1,6 +1,66 @@
 # CLAUDE.md 
 
+## Project Overview
 
+## Commands
+
+## Rules
+
+## Code Examples
+
+## Model Switching During Session // REVIEW
+You can switch models mid-session using the /model command, which provides an interactive menu:
+/model
+
+### Available Options:
+
+Default (recommended) - Opus 4.1 for up to 20% of usage limits, then use Sonnet 4
+Opus - Opus 4.1 for complex tasks (reaches usage limits faster)
+Sonnet - Sonnet 4 for daily use
+Opus Plan Mode - Use Opus 4.1 in plan mode, Sonnet 4 otherwise ✔
+The Opus Plan Mode automatically switches between models based on context, using Opus 4.1 for research and planning phases, then Sonnet 4 for implementation and execution.
+
+Model Name Validation
+Starting with v1.0.111, the /model command validates provided model names to ensure they're correctly specified and supported. This prevents errors from typos or unsupported model requests:
+/model claude-4-sonnet    # Valid - switches successfully
+/model invalid-model      # Invalid - shows validation error
+/model opus               # Valid - uses model alias
+
+### Model Selection
+Claude Code supports multiple models. You can specify which model to use:
+
+Claude 4 Sonnet: Latest balanced performance and speed
+
+export ANTHROPIC_MODEL="claude-sonnet-4-20250514"
+
+Claude 4.1 Opus: Latest maximum capability with enhanced coding and debugging performance
+
+export ANTHROPIC_MODEL="claude-opus-4-1-20250805"
+
+Claude 4 Opus: Previous generation maximum capability model
+
+export ANTHROPIC_MODEL="claude-opus-4-20250514"
+
+Claude 3.5 Haiku: Fastest and most cost-effective
+
+export ANTHROPIC_MODEL="claude-3-5-haiku-20241022"
+
+#### Important limitations: Claude 3.5 Haiku
+
+While Haiku is cost-effective, it has significant limitations for Claude Code usage:
+
+Reduced reasoning capabilities - Struggles with complex multi-step planning and architectural decisions
+Limited context understanding - Less effective at analyzing large codebases and maintaining context across multiple files
+Simplified code analysis - May miss subtle bugs, dependencies, or complex patterns that modern models catch
+Basic refactoring only - Not suitable for sophisticated restructuring or feature implementations
+Limited framework knowledge - Less effective with complex frameworks or novel coding patterns
+Recommended use cases for Haiku:
+
+Simple single-file edits
+Basic syntax corrections
+Quick code questions
+Learning Claude Code basics before upgrading
+For serious development work, Claude 4 Sonnet or Opus provide substantially better results and are worth the additional cost.
 
 ---
 
@@ -132,37 +192,37 @@ Outcome: #completed #partial #blocked #insight #decision #template
 
 **RESEARCHER Profile**
 - **Purpose**: Strategic analysis, investigation, and documentation
-- **Workspace**: `researcher/` directory with analysis, documentation, investigations
+- **Workspace**: `claude-workspace/researcher/` directory with analysis, documentation, investigations
 - **Methodology**: Systematic investigation → comprehensive analysis → strategic recommendations
 - **Output**: Research reports, feasibility assessments, requirements documentation
 
 **ENGINEER Profile**
 - **Purpose**: System design, architecture planning, technical strategy
-- **Workspace**: `engineer/` directory with architecture, integration, infrastructure
+- **Workspace**: `claude-workspace/engineer/` directory with architecture, integration, infrastructure
 - **Methodology**: Requirements analysis → system design → technical specifications
 - **Output**: Architecture diagrams, integration strategies, deployment plans
 
 **DEVELOPER Profile**
 - **Purpose**: Hands-on implementation, coding, testing, practical development
-- **Workspace**: `developer/` directory with src, tests, configs, examples
+- **Workspace**: `claude-workspace/developer/` directory with src, tests, configs, examples
 - **Methodology**: Specifications → implementation → testing → validation
 - **Output**: Working code, test suites, deployment-ready applications
 
 **CREATIVE Profile**
 - **Purpose**: Innovation design, artistic projects, creative problem-solving
-- **Workspace**: `creative/` directory with designs, prototypes, creative assets
+- **Workspace**: `claude-workspace/creative/` directory with designs, prototypes, creative assets
 - **Methodology**: Ideation → design thinking → iterative development → creative expression
 - **Output**: Design prototypes, creative assets, innovative solutions, artistic deliverables
 
 **HUMANIST Profile**
 - **Purpose**: Content analysis, scholarly research, philosophical reasoning
-- **Workspace**: `humanist/` directory with literature, analysis, scholarly work
+- **Workspace**: `claude-workspace/humanist/` directory with literature, analysis, scholarly work
 - **Methodology**: Critical analysis → diverse perspective engagement → scholarly synthesis
 - **Output**: Literary analysis, philosophical frameworks, scholarly documentation, research papers
 
 **TRANSLATOR Profile**
 - **Purpose**: Cross-linguistic communication, cultural adaptation, localization
-- **Workspace**: `translator/` directory with translations, cultural assets, linguistic resources
+- **Workspace**: `claude-workspace/translator/` directory with translations, cultural assets, linguistic resources
 - **Methodology**: Source analysis → cultural mediation → semantic preservation → quality assurance
 - **Output**: Translated content, cultural adaptation guides, linguistic resources, localization assets
 
@@ -392,4 +452,5 @@ If memory system inaccessible:
 
 **Version**: 1.0
 **Generated**: September 17, 2025
+
 
